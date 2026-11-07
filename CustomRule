@@ -1,0 +1,27 @@
+# Detection name: EC2 Network Interface Associated with Unrestricted Security Group
+# Objective: Detect EC2 instances whose network interfaces are associated with a designated unrestricted security group, potentially introducing unauthorized network access.
+
+package wiz
+default result = "pass"
+
+fw_sg := {
+  "sg-xxxx",
+  "sg-xxxy",
+  ...
+}
+
+fw := {
+  "instance-id",
+  "instance-id",
+  ...
+}
+
+result = "fail" {
+  fw_sg[input.SecurityGroups[_].GroupId]
+  not fw[input.InstanceId]
+}
+
+currentConfiguration := "EC2 Network Interface Associated with Unrestricted Security Group"
+expectedConfiguration := "EC2 should not attach to cloud firewall Security Groups"
+
+#
