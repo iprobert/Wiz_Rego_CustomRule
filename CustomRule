@@ -1,5 +1,6 @@
 # Detection name: EC2 Network Interface Associated with Unrestricted Security Group
 # Objective: Detect EC2 instances whose network interfaces are associated with a designated unrestricted security group, potentially introducing unauthorized network access.
+# Target Resource: EC2 Instance
 
 package wiz
 default result = "pass"
